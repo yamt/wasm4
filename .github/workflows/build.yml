@@ -28,6 +28,15 @@ jobs:
 
                     - toywasm
 
+                # toywasm doesn't support windows
+                exclude:
+                    - config:
+                        - os: windows-latest
+                          artifact: "windows"
+                          wasm4: bin/wasm4.exe
+                          libretro: lib/wasm4_libretro.dll
+                      wasm_runtime: toywasm
+
         name: Build ${{ matrix.config.artifact }}
         runs-on: ${{ matrix.config.os }}
         defaults:
